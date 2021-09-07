@@ -24,7 +24,6 @@ class LikeController extends Controller
                 ]);
 
                 Post::where('id',$post_id)->increment('likes');
-                Post::where('id',$post_id)->update(['dislikes' => Post::raw('GREATEST(dislikes - 1, 0)')]);
             }
             else if ($like->value('like') == 0)
             {
@@ -51,7 +50,6 @@ class LikeController extends Controller
                     'like' => 0
                 ]);
                 Post::where('id',$post_id)->increment('dislikes');
-                Post::where('id',$post_id)->update(['likes' => Post::raw('GREATEST(likes - 1, 0)')]);
 
             }
             else if ($like->value('like') == 1)
